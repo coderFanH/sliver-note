@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  build_slideshow:
+    build: .
+    volumes:
+      - ./slides:/tmp/slides
+      - ./dist:/slidev/dist
+    environment:
+      - TITLE=Monadt
+
+  serve_slideshow:
+    image: nginx:1.23.1-alpine
+    volumes:
+      - ./dist:/usr/share/nginx/html
+    ports:
+      - 7000:80
